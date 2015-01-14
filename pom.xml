@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
+  <groupId>org.webjars</groupId>
+  <artifactId>sql.js</artifactId>
+  <version>3.8.7.4-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>sql.js</name>
+  <description>WebJar for sql.js</description>
+  <url>http://webjars.org</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>peterjanes</id>
+      <name>Peter Janes</name>
+      <email>peter.janes@cineplex.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>http://github.com/webjars/sql.js</url>
+    <connection>scm:git:https://github.com/webjars/sql.js.git</connection>
+    <developerConnection>scm:git:https://github.com/webjars/sql.js.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <upstream.version>3.8.7.4</upstream.version>
+    <upstream.commit>a2fae6835b6117ee69df3a148fa497447ed74056</upstream.commit>
+    <upstream.url>https://raw.githubusercontent.com/kripken/sql.js/${upstream.commit}/js/sql.js</upstream.url>
+    <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
+    <requirejs>
+      {
+        "paths": {
+          "sql.js": "sql.js"
+        }
+      }
+    </requirejs>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <mkdir dir="${destDir}"/>
+                <get src="${upstream.url}" dest="${destDir}"/>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.2</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>sonatype-nexus-staging</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
