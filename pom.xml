@@ -10,7 +10,7 @@
 
   <groupId>org.webjars</groupId>
   <artifactId>sql.js</artifactId>
-  <version>3.8.7.4-SNAPSHOT</version>
+  <version>a2fae68-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>sql.js</name>
@@ -41,14 +41,14 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <upstream.version>3.8.7.4</upstream.version>
+    <upstream.version>a2fae68</upstream.version>
     <upstream.commit>a2fae6835b6117ee69df3a148fa497447ed74056</upstream.commit>
     <upstream.url>https://raw.githubusercontent.com/kripken/sql.js/${upstream.commit}/js/sql.js</upstream.url>
     <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
     <requirejs>
       {
         "paths": {
-          "sql.js": "sql.js"
+          "sql-js": "sql"
         }
       }
     </requirejs>
